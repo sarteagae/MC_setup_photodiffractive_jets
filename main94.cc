@@ -1,4 +1,4 @@
-//My Main94.cc to produce photo-nuclear dijet production set up 
+//My Main94.cc to produce photo-diffractive dijet production set up 
 //Modified from  test78.cc by Ilkka Helenius  and  following main68.cc
 
 #include <iostream>
