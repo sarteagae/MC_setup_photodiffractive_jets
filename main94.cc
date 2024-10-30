@@ -1,4 +1,4 @@
-//My Main94.cc to produce photo-diffractive dijet production set up 
+//My Main94.cc to produce photo-nuclear dijet production set up 
 //Modified from  test78.cc by Ilkka Helenius  and  following main68.cc
 
 #include <iostream>
@@ -50,8 +50,16 @@ public:
 };
 
 
-int main() {
+int main(int argc, char* argv[]) {  // input for file name
     
+    if (argc < 2) {
+        cout << "Error: No output file number provided!" << endl;
+        return 1;
+    }
+
+    // Convert the argument to a number and use it in the filename
+    string fileNumber = argv[1];
+
     Pythia pythia;
     
     // Decrease the output.
@@ -61,6 +69,11 @@ int main() {
     pythia.readString("Next:numberShowInfo = 0");
     pythia.readString("Next:numberShowProcess = 1");  
     pythia.readString("Next:numberShowEvent = 0");   
+
+
+    pythia.readString("Random:setSeed = on"); // Change to random seed
+    pythia.readString("Random:seed = 0");// value 0 gives a random seed based on the time
+
 
     // Beam settings.
     pythia.readString("Beams:frameType = 2");    // to identify two beams
@@ -100,16 +113,17 @@ int main() {
     pythia.readString("PartonLevel:MPI = off"); 
 
  
-    pythia.readString("Random:setSeed = on"); // Change to random seed
-    pythia.readString("Random:seed = 0");// value 0 gives a random seed based on the time
+   // pythia.readString("Random:setSeed = on"); // Change to random seed
+   // pythia.readString("Random:seed = 0");// value 0 gives a random seed based on the time
     pythia.readString("HardQCD:all = on");
     pythia.readString("PhaseSpace:pTHatMin = 10.0");
     
-   
+
+    
 /********* Example settings for hard diffraction. ***********************//////
 // Comment this out for inclusive jets.
   
-   pythia.readString("PDF:PomSet = 8");
+   pythia.readString("PDF:PomSet = 6"); // 6 = Default 
    pythia.readString("Diffraction:hardDiffSide = 2"); // 1 Check for diffraction on side A only. 2 para B, and 0 Check for diffraction on both side. 
    						      // keeping 2 following  example main68.cc 
    						      
@@ -122,19 +136,22 @@ int main() {
   //this means: option 3 Generate an exclusive diffractive sample with no MPI. //
   //option4 Generate an exclusive diffractive sample with MPI. 
     
-    
+
+
 //    int nDiffA=0;
 //    int nDiffB=0; 
     
     
-    int numEvent = 1000;
+    int numEvent = 10000;
     
     pythia.init();
+
+    string fileName = "/eos/cms/store/group/phys_heavyions/sarteaga/lhe_files_mc/gamma_pomeron/10M_11Oct_pthat10/gamma_pomeron_pPb_8p16TeV_pthat10_Pomset6_pomflux7_diffside2_file_" + fileNumber + ".lhe";
     
     // To create LHEF files 
     LHEF3FromPythia8 myLHEF3(&pythia.event, &pythia.info);
    
-    myLHEF3.openLHEF("lhe_files_before_rm_headers/gamma_pomeron/pthat10/1Mevents_part2/gamma_pomeron_pPb_8p16TeV_test_pthat10_file.lhe");
+    myLHEF3.openLHEF(fileName);
 
     myLHEF3.setInit();
     myLHEF3.initLHEF();
