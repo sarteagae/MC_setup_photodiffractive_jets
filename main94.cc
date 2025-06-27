@@ -113,8 +113,7 @@ int main(int argc, char* argv[]) {  // input for file name
     pythia.readString("PartonLevel:MPI = off"); 
 
  
-   // pythia.readString("Random:setSeed = on"); // Change to random seed
-   // pythia.readString("Random:seed = 0");// value 0 gives a random seed based on the time
+  
     pythia.readString("HardQCD:all = on");
     pythia.readString("PhaseSpace:pTHatMin = 10.0");
     
@@ -123,14 +122,14 @@ int main(int argc, char* argv[]) {  // input for file name
 /********* Example settings for hard diffraction. ***********************//////
 // Comment this out for inclusive jets.
   
-   pythia.readString("PDF:PomSet = 6"); // 6 = Default 
-   pythia.readString("Diffraction:hardDiffSide = 2"); // 1 Check for diffraction on side A only. 2 para B, and 0 Check for diffraction on both side. 
+//   pythia.readString("PDF:PomSet = 6"); // 6 = Default 
+//   pythia.readString("Diffraction:hardDiffSide = 2"); // 1 Check for diffraction on side A only. 2 para B, and 0 Check for diffraction on both side. 
    						      // keeping 2 following  example main68.cc 
    						      
-   pythia.readString("SigmaDiffractive:PomFlux = 7"); // H1 Fit B LO
-   pythia.readString("Diffraction:doHard = on"); //can be any hard process (e.g. jets)
+//   pythia.readString("SigmaDiffractive:PomFlux = 7"); // H1 Fit B LO
+//   pythia.readString("Diffraction:doHard = on"); //can be any hard process (e.g. jets)
 
-   pythia.readString("Diffraction:sampleType = 3");
+//   pythia.readString("Diffraction:sampleType = 3");
     
   //Comment: sampleType == 3 => PDF selection, sampleType == 4 => MPI selection.
   //this means: option 3 Generate an exclusive diffractive sample with no MPI. //
