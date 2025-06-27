@@ -114,7 +114,7 @@ int main(int argc, char* argv[]) {  // input for file name
 
  
   
-    pythia.readString("HardQCD:all = on");
+    pythia.readString("HardQCD:all = on"); // comment out for diffractive process.Keep it for photo-gluon interaction
     pythia.readString("PhaseSpace:pTHatMin = 10.0");
     
 
